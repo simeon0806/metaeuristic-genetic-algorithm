@@ -11,6 +11,7 @@ public class App {
     public static void main(String[] args) {
         String word = "sapor";
 
+        long startTime = System.currentTimeMillis();
         // Initialize population
         Population population = new Population(word.length());
 
@@ -42,6 +43,8 @@ public class App {
 
             System.out.println("Generation: " + generationCount + " Fittest: " + population.fittest);
         }
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
 
         System.out.println("\nSolution found in generation " + generationCount);
         System.out.println("Fitness: " + population.getFittest().fitness);
@@ -49,6 +52,8 @@ public class App {
         for (int i = 0; i < word.length(); i++) {
             System.out.print(population.getFittest().genes[i]);
         }
+
+        System.out.println("Time taken: " + elapsedTime + " milliseconds");
 
         System.out.println("");
 
