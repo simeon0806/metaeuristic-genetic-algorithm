@@ -3,12 +3,11 @@ import java.util.stream.IntStream;
 class Population {
 
     int popSize = 10;
-    Individual[] individuals = new Individual[popSize];
+    Individual[] individuals;
     int fittest = 0;
 
-    public void initializePopulation(int size) {
-        IntStream.range(0, individuals.length)
-                .forEach(index -> individuals[index] =  new Individual());
+    public Population(int size) {
+        individuals = IntStream.range(0, size).mapToObj(i -> new Individual(size)).toArray(Individual[]::new);
     }
 
     public Individual getFittest() {
