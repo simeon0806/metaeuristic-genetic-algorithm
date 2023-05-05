@@ -21,7 +21,7 @@ public class App {
         System.out.println("Generation: " + generationCount + " Fittest: " + population.fittest);
 
         // While population gets an individual with maximum fitness
-        while (population.fittest < 10) {
+        while (population.fittest < (word.length() * 2)) {
             ++generationCount;
 
             // Do selection
