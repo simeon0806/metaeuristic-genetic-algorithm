@@ -1,10 +1,14 @@
 import java.util.Random;
 import java.util.stream.IntStream;
 
+
+class Individual implements Cloneable {
 class Individual {
 
     int fitness = 0;
+
     static int GENE_LENGTH;
+
     char[] genes;
 
     public Individual(int size) {
@@ -12,6 +16,7 @@ class Individual {
         Random rn = new Random();
 
         genes = new char[size];
+
         // Set genes randomly for each individual
         IntStream.range(0, genes.length)
                 .forEach(index -> genes[index] = (char) (rn.nextInt(26) + 'a'));
@@ -28,6 +33,15 @@ class Individual {
                 });
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Individual individual = (Individual) super.clone();
+        individual.genes = new char[genes.length];
+        for (int i = 0; i < individual.genes.length; i++) {
+            individual.genes[i] = this.genes[i];
+        }
+        return individual;
+    }
 }
 
 

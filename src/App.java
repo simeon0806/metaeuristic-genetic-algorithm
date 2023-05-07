@@ -3,24 +3,27 @@ import java.util.Random;
 public class App {
 
     static Individual fittest;
+
     static Individual secondFittest;
+
     static int generationCount = 0;
 
     static Random rn = new Random();
 
     public static void main(String[] args) {
-        String word = "tesr";
+        String word = "tus";
 
         long startTime = System.currentTimeMillis();
-        // Initialize population
+
+        // Initialize the population
         Population population = new Population(word.length());
 
-        // Calculate fitness of each individual
+        // Calculate the fitness of each individual
         population.calculateFitness(word);
 
         System.out.println("Generation: " + generationCount + " Fittest: " + population.fittest);
 
-        // While population gets an individual with maximum fitness
+        // While loop until population gets an individual with maximum fitness
         while (population.fittest < (word.length() * 2)) {
             ++generationCount;
 
@@ -35,7 +38,7 @@ public class App {
                 mutation();
             }
 
-            // Add fittest offspring to population
+            // Add the fittest offspring to population
             addFittestOffspring(population, word);
 
             // Calculate new fitness value
@@ -43,6 +46,7 @@ public class App {
 
             System.out.println("Generation: " + generationCount + " Fittest: " + population.fittest);
         }
+
         long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
 
@@ -52,23 +56,20 @@ public class App {
         for (int i = 0; i < word.length(); i++) {
             System.out.print(population.getFittest().genes[i]);
         }
-        System.out.println("");
 
         System.out.println("Time taken: " + elapsedTime + " milliseconds");
-
+        System.out.println();
     }
 
     static void selection(Population population) {
-
-        // Select the most fittest individual
+        // Select the fittest individual
         fittest = population.getFittest();
 
-        // Select the second most fittest individual
+        // Select the second-fittest individual
         secondFittest = population.getSecondFittest();
     }
 
     static void crossover() {
-
         // Select a random crossover point
         int crossOverPoint = rn.nextInt(Individual.GENE_LENGTH);
 
@@ -82,7 +83,6 @@ public class App {
     }
 
     static void mutation() {
-
         // Select a random mutation point
         int mutationPoint = rn.nextInt(Individual.GENE_LENGTH);
 
@@ -99,17 +99,16 @@ public class App {
     }
 
 
-    // Replace least fittest individual from most fittest offspring
+    // Replace the least fit individual from the fittest offspring
     static void addFittestOffspring(Population population, String word) {
-
         // Update fitness values of offspring
         fittest.calcFitness(word);
         secondFittest.calcFitness(word);
 
-        // Get index of least fit individual
+        // Get index of the least fit individual
         int leastFittestIndex = population.getLeastFittestIndex();
 
-        // Replace least fittest individual from most fittest offspring
+        // Replace the least fit individual from the fittest offspring
         population.individuals[leastFittestIndex] = getFittestOffspring();
     }
 
