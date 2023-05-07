@@ -57,8 +57,8 @@ public class App {
             System.out.print(population.getFittest().genes[i]);
         }
 
-        System.out.println("Time taken: " + elapsedTime + " milliseconds");
         System.out.println();
+        System.out.println("Time taken: " + elapsedTime + " milliseconds");
     }
 
     static void selection(Population population) {

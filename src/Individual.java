@@ -3,7 +3,6 @@ import java.util.stream.IntStream;
 
 
 class Individual implements Cloneable {
-class Individual {
 
     int fitness = 0;
 
@@ -26,7 +25,7 @@ class Individual {
         fitness = 0;
         IntStream.range(0, genes.length)
                 .forEach(index -> {
-                    if (word.contains("" + genes[index] + "")) {
+                    if (word.contains(String.valueOf(genes[index]))) {
                         int incrementationNumber = word.indexOf(genes[index]) == index ? 2 : 1;
                         fitness += incrementationNumber;
                     }
