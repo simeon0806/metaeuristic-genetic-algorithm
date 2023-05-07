@@ -7,7 +7,7 @@ class Population {
     int fittest = 0;
 
     public Population(int size) {
-        individuals = IntStream.range(0, size).mapToObj(i -> new Individual(size)).toArray(Individual[]::new);
+        individuals = IntStream.range(0, popSize).mapToObj(i -> new Individual(popSize)).toArray(Individual[]::new);
     }
 
     public Individual getFittest() {
@@ -20,7 +20,11 @@ class Population {
             }
         }
         fittest = individuals[maxFitIndex].fitness;
-        return individuals[maxFitIndex];
+        try {
+            return (Individual) individuals[maxFitIndex].clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Individual getSecondFittest() {
@@ -34,7 +38,11 @@ class Population {
                 maxFit2 = i;
             }
         }
-        return individuals[maxFit2];
+        try {
+            return (Individual) individuals[maxFit2].clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int getLeastFittestIndex() {
