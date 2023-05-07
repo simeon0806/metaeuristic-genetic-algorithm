@@ -9,7 +9,7 @@ public class App {
     static Random rn = new Random();
 
     public static void main(String[] args) {
-        String word = "sapor";
+        String word = "tesr";
 
         long startTime = System.currentTimeMillis();
         // Initialize population
@@ -52,10 +52,9 @@ public class App {
         for (int i = 0; i < word.length(); i++) {
             System.out.print(population.getFittest().genes[i]);
         }
+        System.out.println("");
 
         System.out.println("Time taken: " + elapsedTime + " milliseconds");
-
-        System.out.println("");
 
     }
 

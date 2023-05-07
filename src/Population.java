@@ -7,7 +7,7 @@ class Population {
     int fittest = 0;
 
     public Population(int size) {
-        individuals = IntStream.range(0, size).mapToObj(i -> new Individual(size)).toArray(Individual[]::new);
+        individuals = IntStream.range(0, popSize).mapToObj(i -> new Individual(size)).toArray(Individual[]::new);
     }
 
     public Individual getFittest() {

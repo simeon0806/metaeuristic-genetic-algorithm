@@ -1,7 +1,6 @@
 import java.util.Random;
 import java.util.stream.IntStream;
 
-
 class Individual {
 
     int fitness = 0;
